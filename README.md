@@ -26,7 +26,7 @@ Write an application that prints out the receipt details for these shopping bask
 ### OUTPUT
 
 *Output 1*:
->1 book : 12.49  
+>1 book: 12.49  
 >1 music CD: 16.49  
 >1 chocolate bar: 0.85  
 >Sales Taxes: 1.50  
