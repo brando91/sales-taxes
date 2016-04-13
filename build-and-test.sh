@@ -9,16 +9,15 @@ relative_path=`dirname $0`
 root=`cd $relative_path/;pwd`
 project=$root/sales-taxes
 build=$project/build
-jar=$root/app.jar
+jar=$project/app.jar
 
 signal "Building Project"
-cd $project
 rm -rf $build
 mkdir -p $build
-javac -encoding utf8 -cp .:'lib/*' */*/*.java -d $build
+javac -encoding utf8 -cp .:$project/lib/* $project/*/*/*.java -d $build
 
 cd $build
-for file in ../lib/*.jar
+for file in $project/lib/*.jar
 do
 	jar xf $file
 done
