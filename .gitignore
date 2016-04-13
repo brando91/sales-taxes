@@ -1,3 +1,6 @@
 .metadata
 .recommenders
 *.class
+bin
+build
+app.jar

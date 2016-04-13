@@ -7,7 +7,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(ClasspathSuite.class)
 @IncludeJars(true)
-@ClassnameFilters({"acceptance.*"})
-public class TestSuite {
-
-}
+@ClassnameFilters({"acceptance.*", "unit.*"})
+public class TestSuite {}
