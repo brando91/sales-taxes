@@ -1,5 +1,9 @@
 package core;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.StringUtils;
+
 
 public class Receipt {
 
@@ -10,8 +14,19 @@ public class Receipt {
 	}
 
 	public String print() {
-		Item item = cart.items().get(0);
-		return item.quantity() + " " + item.product() + " at " + item.price();
+		ArrayList<String> entries = new ArrayList<String>();
+		ArrayList<Item> items = cart.items();
+		for(Item item : items){
+			entries.add(item.quantity() + " " + item.product() + ": " + item.price());
+		}
+		entries.add("Sales Taxes: 0");
+		entries.add("Total: 0");
+		
+		return StringUtils.join(entries, newLine());
+	}
+
+	private String newLine() {
+		return System.getProperty("line.separator");
 	}
 
 }
