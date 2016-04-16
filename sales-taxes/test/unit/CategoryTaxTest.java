@@ -3,7 +3,6 @@ package unit;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import core.CategoryTax;
@@ -18,7 +17,7 @@ public class CategoryTaxTest {
 		assertThat(taxedPrice, equalTo(1.0));
 	}
 	
-	@Ignore
+	@Test
 	public void ShouldReturnRoundedApplyedTax() throws Exception {
 		double originalPrice = 14.99;
 		double taxedPrice = new CategoryTax(0.10).on(originalPrice);

@@ -9,7 +9,11 @@ public class CategoryTax {
 	}
 
 	public double on(double originalPrice) {
-		return originalPrice*this.tax;
+		return round(originalPrice*this.tax);
+	}
+
+	private double round(double value) {
+		return Math.round(value*100)/100.0;
 	}
 
 }
