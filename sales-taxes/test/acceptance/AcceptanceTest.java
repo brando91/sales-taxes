@@ -15,9 +15,9 @@ public class AcceptanceTest {
 	@Ignore
 	public void ReceiptWithNoImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "book", 12.49))
-			.add(new Item(1, "music CD", 14.99))
-			.add(new Item(1, "chocolate bar", 0.85));
+		cart.add(new Item(1, "book", "any category", 12.49))
+			.add(new Item(1, "music CD", "any category", 14.99))
+			.add(new Item(1, "chocolate bar", "any category", 0.85));
 		
 		String receipt = new Receipt(cart).print();
 
@@ -31,8 +31,8 @@ public class AcceptanceTest {
 	@Ignore
 	public void ReceiptWithImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "imported box of chocolates", 10.00))
-			.add(new Item(1, "imported bottle of perfume", 47.50));
+		cart.add(new Item(1, "imported box of chocolates", "any category", 10.00))
+			.add(new Item(1, "imported bottle of perfume", "any category", 47.50));
 		
 		String receipt = new Receipt(cart).print();
 		
@@ -45,10 +45,10 @@ public class AcceptanceTest {
 	@Ignore
 	public void ReceiptWithBothImportedAndNotImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "imported bottle of perfume", 27.99))
-			.add(new Item(1, "bottle of perfume", 18.99))
-			.add(new Item(1, "packet of headache pills", 9.75))
-			.add(new Item(1, "imported box of chocolates", 11.25));
+		cart.add(new Item(1, "imported bottle of perfume", "any category", 27.99))
+			.add(new Item(1, "bottle of perfume", "any category", 18.99))
+			.add(new Item(1, "packet of headache pills", "any category", 9.75))
+			.add(new Item(1, "imported box of chocolates", "any category", 11.25));
 		
 		String receipt = new Receipt(cart).print();
 		

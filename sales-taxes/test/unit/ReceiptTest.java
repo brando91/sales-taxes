@@ -17,7 +17,7 @@ public class ReceiptTest {
 	@Test
 	public void ShouldPrintAnItemWithNoTaxes() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", 3.87));
+		cart.add(new Item(1, "banana", "any category", 3.87));
 		
 		String receipt = new Receipt(cart).print();
 		
@@ -35,8 +35,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldPrintAllTheItemsInTheCart() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", 3.87));
-		cart.add(new Item(1, "apple", 1.05));
+		cart.add(new Item(1, "banana", "any category", 3.87));
+		cart.add(new Item(1, "apple", "any category", 1.05));
 		
 		String receipt = new Receipt(cart).print();
 		
@@ -47,8 +47,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldCountTheTotalAmount() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", 2.0));
-		cart.add(new Item(1, "apple", 1.55));
+		cart.add(new Item(1, "banana", "any category", 2.0));
+		cart.add(new Item(1, "apple", "any category", 1.55));
 		
 		String receipt = new Receipt(cart).print();
 		
