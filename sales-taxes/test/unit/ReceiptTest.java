@@ -2,9 +2,8 @@ package unit;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import core.Cart;
@@ -29,8 +28,8 @@ public class ReceiptTest {
 	public void ShouldPrintAnEmptyCart() throws Exception {
 		String receipt = new Receipt(new Cart()).print();
 		
-		assertThat(receipt, equalTo("Sales Taxes: 0" + newLine +
-									"Total: 0"));
+		assertThat(receipt, equalTo("Sales Taxes: 0.0" + newLine +
+									"Total: 0.0"));
 	}
 	
 	@Test
@@ -45,7 +44,7 @@ public class ReceiptTest {
 		assertThat(receipt, containsString("1 apple: 1.05"));
 	}
 	
-	@Ignore
+	@Test
 	public void ShouldCountTheTotalAmount() throws Exception {
 		Cart cart = new Cart();
 		cart.add(new Item(1, "banana", 2.0));

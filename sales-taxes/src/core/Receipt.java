@@ -15,14 +15,20 @@ public class Receipt {
 
 	public String print() {
 		ArrayList<String> entries = new ArrayList<String>();
-		ArrayList<Item> items = cart.items();
-		for(Item item : items){
-			entries.add(item.quantity() + " " + item.product() + ": " + item.price());
+		double total = 0;
+		
+		for(Item item : cart.items()){
+			entries.add(asEntry(item.quantity() + " " + item.product(), item.price()));
+			total += item.price();
 		}
-		entries.add("Sales Taxes: 0");
-		entries.add("Total: 0");
+		entries.add(asEntry("Sales Taxes", 0));
+		entries.add(asEntry("Total", total));
 		
 		return StringUtils.join(entries, newLine());
+	}
+
+	private String asEntry(String label, double value) {
+		return label + ": " + value;
 	}
 
 	private String newLine() {
