@@ -17,13 +17,16 @@ public class Receipt {
 	public String print() {
 		ArrayList<String> entries = new ArrayList<String>();
 		double total = 0;
+		double taxes = 0;
 		
 		for(Item item : cart.items()){
-			double taxedPrice = item.price() + this.tax.on(item);
+			double appliedTax = this.tax.on(item);
+			double taxedPrice = item.price() + appliedTax;
 			entries.add(asEntry(item.quantity() + " " + item.product(), taxedPrice));
 			total += taxedPrice;
+			taxes += appliedTax;
 		}
-		entries.add(asEntry("Sales Taxes", 0));
+		entries.add(asEntry("Sales Taxes", taxes));
 		entries.add(asEntry("Total", total));
 		
 		return StringUtils.join(entries, newLine());
