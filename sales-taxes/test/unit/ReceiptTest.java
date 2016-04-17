@@ -77,4 +77,18 @@ public class ReceiptTest {
 		
 		assertThat(receipt, containsString("1 banana: 2.2"));
 	}
+	
+	@Test
+	public void ShouldApplyTaxesToTotal() throws Exception {
+		Cart cart = new Cart();
+		cart.add(new Item(1, "banana", "fruits", 2.0));
+		cart.add(new Item(1, "melon", "fruits", 10.0));
+		
+		CategoryTax categoryTax = new CategoryTax(0.10).forCategories("fruits");
+		String receipt = new Receipt(cart)
+								.applyingTax(categoryTax)
+								.print();
+		
+		assertThat(receipt, containsString("Total: 13.2"));
+	}
 }
