@@ -68,9 +68,9 @@ public class ReceiptTest {
 	@Test
 	public void ShouldApplyTaxesToItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "fruits", 2.0));
+		cart.add(new Item(1, "banana", "any", 2.0));
 		
-		CategoryTax categoryTax = new CategoryTax(0.10).forCategories("fruits");
+		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
 								.applyingTax(categoryTax)
 								.print();
@@ -84,7 +84,7 @@ public class ReceiptTest {
 		cart.add(new Item(1, "banana", "fruits", 2.0));
 		cart.add(new Item(1, "melon", "fruits", 10.0));
 		
-		CategoryTax categoryTax = new CategoryTax(0.10).forCategories("fruits");
+		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
 								.applyingTax(categoryTax)
 								.print();
@@ -98,7 +98,7 @@ public class ReceiptTest {
 		cart.add(new Item(1, "banana", "fruits", 2.0));
 		cart.add(new Item(1, "melon", "fruits", 10.0));
 		
-		CategoryTax categoryTax = new CategoryTax(0.10).forCategories("fruits");
+		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
 								.applyingTax(categoryTax)
 								.print();

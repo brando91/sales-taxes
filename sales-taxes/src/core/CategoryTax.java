@@ -6,23 +6,23 @@ import java.util.Arrays;
 public class CategoryTax implements Tax{
 
 	private double tax;
-	private ArrayList<String> taxedCategories;
+	private ArrayList<String> untaxedCategories;
 
 	public CategoryTax(double tax) {
 		this.tax = tax;
-		this.taxedCategories = new ArrayList<String>();
+		this.untaxedCategories = new ArrayList<String>();
 	}
 
 	@Override
 	public double on(Item item) {
-		if(this.taxedCategories.contains(item.category())){
-			return round(item.price()*this.tax);
+		if(this.untaxedCategories.contains(item.category())){
+			return 0;
 		}
-		return 0;
+		return round(item.price()*this.tax);
 	}
 
-	public CategoryTax forCategories(String... category) {
-		this.taxedCategories = new ArrayList<String>(Arrays.asList(category));
+	public CategoryTax exceptCategories(String... category) {
+		this.untaxedCategories = new ArrayList<String>(Arrays.asList(category));
 		return this;
 	}
 
