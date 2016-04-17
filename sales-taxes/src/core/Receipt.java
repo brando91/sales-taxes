@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Receipt {
 
 	private Cart cart;
+	private Tax tax;
 
 	public Receipt(Cart cart) {
 		this.cart = cart;
@@ -18,7 +19,8 @@ public class Receipt {
 		double total = 0;
 		
 		for(Item item : cart.items()){
-			entries.add(asEntry(item.quantity() + " " + item.product(), item.price()));
+			double taxedPrice = item.price() + this.tax.on(item);
+			entries.add(asEntry(item.quantity() + " " + item.product(), taxedPrice));
 			total += item.price();
 		}
 		entries.add(asEntry("Sales Taxes", 0));
@@ -27,6 +29,11 @@ public class Receipt {
 		return StringUtils.join(entries, newLine());
 	}
 
+	public Receipt applyingTax(Tax tax) {
+		this.tax = tax;
+		return this;
+	}
+	
 	private String asEntry(String label, double value) {
 		return label + ": " + value;
 	}
@@ -34,5 +41,4 @@ public class Receipt {
 	private String newLine() {
 		return System.getProperty("line.separator");
 	}
-
 }
