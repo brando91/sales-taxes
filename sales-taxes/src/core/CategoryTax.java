@@ -14,10 +14,13 @@ public class CategoryTax {
 	}
 
 	public double on(Item item) {
-		return round(item.price()*this.tax);
+		if(this.taxedCategories.contains(item.category())){
+			return round(item.price()*this.tax);
+		}
+		return 0;
 	}
 
-	public CategoryTax forCategory(String... category) {
+	public CategoryTax forCategories(String... category) {
 		this.taxedCategories = new ArrayList<String>(Arrays.asList(category));
 		return this;
 	}

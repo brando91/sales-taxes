@@ -26,4 +26,8 @@ public class Item {
 		return this.price;
 	}
 
+	public String category() {
+		return this.category;
+	}
+
 }
