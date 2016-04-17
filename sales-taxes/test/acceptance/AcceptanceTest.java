@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Ignore;
+import org.junit.Test;
 
 import core.Cart;
 import core.Item;
@@ -12,19 +13,19 @@ import core.Transaction;
 
 public class AcceptanceTest {
 
-	@Ignore
+	@Test
 	public void ReceiptWithNoImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "book", "any category", 12.49))
-			.add(new Item(1, "music CD", "any category", 14.99))
-			.add(new Item(1, "chocolate bar", "any category", 0.85));
+		cart.add(new Item(1, "book", "books", 12.49))
+			.add(new Item(1, "music CD", "music", 14.99))
+			.add(new Item(1, "chocolate bar", "food", 0.85));
 		
 		String receipt = new Transaction(cart).printReceipt();
 
-		assertThat(receipt, equalTo(asLines("1 book: 12.49 ", 
+		assertThat(receipt, equalTo(asLines("1 book: 12.49", 
 										    "1 music CD: 16.49", 
 										    "1 chocolate bar: 0.85",
-										    "Sales Taxes: 1.50",
+										    "Sales Taxes: 1.5",
 											"Total: 29.83")));
 	}
 
