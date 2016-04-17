@@ -13,14 +13,16 @@ public class TaxedItemTest {
 
 	@Test
 	public void ShouldReturnRoundedTaxedPrice() throws Exception {
-		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99), new CategoryTax(0.10));
+		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99, false), 
+											new CategoryTax(0.10));
 		
 		assertThat(taxedItem.price(), equalTo(16.49));
 	}
 	
 	@Test
-	public void ShouldRoundedApplyedTax() throws Exception {
-		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99), new CategoryTax(0.10));
+	public void ShouldReturnRoundedAppliedTax() throws Exception {
+		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99, false), 
+											new CategoryTax(0.10));
 		
 		assertThat(taxedItem.tax(), equalTo(1.5));
 	}

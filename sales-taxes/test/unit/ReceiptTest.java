@@ -20,7 +20,7 @@ public class ReceiptTest {
 	@Test
 	public void ShouldPrintAnItemWithNoTaxes() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "any category", 3.87));
+		cart.add(new Item(1, "banana", "any category", 3.87, false));
 		
 		String receipt = new Receipt(cart)
 								.applyingTax(new NoTaxes())
@@ -42,8 +42,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldPrintAllTheItemsInTheCart() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "any category", 3.87));
-		cart.add(new Item(1, "apple", "any category", 1.05));
+		cart.add(new Item(1, "banana", "any category", 3.87, false));
+		cart.add(new Item(1, "apple", "any category", 1.05, false));
 		
 		String receipt = new Receipt(cart)
 								.applyingTax(new NoTaxes())
@@ -56,8 +56,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldCountTheTotalAmount() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "any category", 2.0));
-		cart.add(new Item(1, "apple", "any category", 1.55));
+		cart.add(new Item(1, "banana", "any category", 2.0, false));
+		cart.add(new Item(1, "apple", "any category", 1.55, false));
 		
 		String receipt = new Receipt(cart)
 									.applyingTax(new NoTaxes())
@@ -69,7 +69,7 @@ public class ReceiptTest {
 	@Test
 	public void ShouldApplyTaxesToItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "any", 14.99));
+		cart.add(new Item(1, "banana", "any", 14.99, false));
 		
 		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
@@ -82,8 +82,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldApplyTaxesToTotal() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "fruits", 2.0));
-		cart.add(new Item(1, "melon", "fruits", 10.0));
+		cart.add(new Item(1, "banana", "fruits", 2.0, false));
+		cart.add(new Item(1, "melon", "fruits", 10.0, false));
 		
 		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
@@ -96,8 +96,8 @@ public class ReceiptTest {
 	@Test
 	public void ShouldCountTotalTaxesApplied() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "banana", "fruits", 2.0));
-		cart.add(new Item(1, "melon", "fruits", 10.0));
+		cart.add(new Item(1, "banana", "fruits", 2.0, false));
+		cart.add(new Item(1, "melon", "fruits", 10.0, false));
 		
 		CategoryTax categoryTax = new CategoryTax(0.10);
 		String receipt = new Receipt(cart)
@@ -110,7 +110,7 @@ public class ReceiptTest {
 	@Test
 	public void ShouldPrintTheEntireReceipt() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "music CD", "music", 14.99));
+		cart.add(new Item(1, "music CD", "music", 14.99, false));
 		
 		String receipt = new Receipt(cart).applyingTax(new CategoryTax(0.10)).print();
 

@@ -14,10 +14,10 @@ public class TransactionTest {
 	@Test
 	public void ShouldNotApplyTaxesToBooksFoodsAndMedicals() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "book", "books", 12.49))
-			.add(new Item(1, "aspirine", "medical products", 13.55))
-			.add(new Item(1, "music CD", "music", 14.99))
-			.add(new Item(1, "chocolate bar", "food", 0.85));
+		cart.add(new Item(1, "book", "books", 12.49, false))
+			.add(new Item(1, "aspirine", "medical products", 13.55, false))
+			.add(new Item(1, "music CD", "music", 14.99, false))
+			.add(new Item(1, "chocolate bar", "food", 0.85, false));
 		
 		String receipt = new Transaction(cart).printReceipt();
 		
