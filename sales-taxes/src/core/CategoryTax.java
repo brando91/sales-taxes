@@ -18,15 +18,11 @@ public class CategoryTax implements Tax{
 		if(this.untaxedCategories.contains(item.category())){
 			return 0;
 		}
-		return round(item.price()*this.tax);
+		return item.price()*this.tax;
 	}
 
 	public CategoryTax exceptCategories(String... category) {
 		this.untaxedCategories = new ArrayList<String>(Arrays.asList(category));
 		return this;
-	}
-
-	private double round(double value) {
-		return Math.round(value*100)/100.0;
 	}
 }

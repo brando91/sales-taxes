@@ -20,11 +20,10 @@ public class Receipt {
 		double taxes = 0;
 		
 		for(Item item : cart.items()){
-			double appliedTax = this.tax.on(item);
-			double taxedPrice = item.price() + appliedTax;
-			entries.add(asEntry(item.quantity() + " " + item.product(), taxedPrice));
-			total += taxedPrice;
-			taxes += appliedTax;
+			TaxedItem taxedItem = new TaxedItem(item, this.tax);
+			entries.add(asEntry(item.quantity() + " " + item.product(), taxedItem.price()));
+			total += taxedItem.price();
+			taxes += taxedItem.tax();
 		}
 		entries.add(asEntry("Sales Taxes", taxes));
 		entries.add(asEntry("Total", total));

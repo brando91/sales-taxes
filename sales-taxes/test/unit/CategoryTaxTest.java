@@ -20,7 +20,7 @@ public class CategoryTaxTest {
 	
 	@Test
 	public void ShouldReturnRoundedApplyedTax() throws Exception {
-		Item item = new Item(1, "taxed book", "any", 14.99);
+		Item item = new Item(1, "taxed book", "any", 15.0);
 		double taxedPrice = new CategoryTax(0.10).on(item);
 		
 		assertThat(taxedPrice, equalTo(1.5));
@@ -28,11 +28,11 @@ public class CategoryTaxTest {
 	
 	@Test
 	public void ShouldTaxOnlySpecificCategoryItems() throws Exception {
-		Item taxableItem = new Item(1, "banana", "fruits", 3.5);
-		Item notTaxableItem = new Item(1, "tomato", "vegetables", 3.5);
+		Item taxableItem = new Item(1, "banana", "fruits", 10.0);
+		Item notTaxableItem = new Item(1, "tomato", "vegetables", 10.0);
 		CategoryTax tax = new CategoryTax(0.10).exceptCategories("vegetables");
 		
-		assertThat(tax.on(taxableItem), equalTo(0.35));
+		assertThat(tax.on(taxableItem), equalTo(1.0));
 		assertThat(tax.on(notTaxableItem), equalTo(0.0));
 	}
 	
