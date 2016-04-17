@@ -8,7 +8,7 @@ import org.junit.Ignore;
 
 import core.Cart;
 import core.Item;
-import core.Receipt;
+import core.Transaction;
 
 public class AcceptanceTest {
 
@@ -19,7 +19,7 @@ public class AcceptanceTest {
 			.add(new Item(1, "music CD", "any category", 14.99))
 			.add(new Item(1, "chocolate bar", "any category", 0.85));
 		
-		String receipt = new Receipt(cart).print();
+		String receipt = new Transaction(cart).printReceipt();
 
 		assertThat(receipt, equalTo(asLines("1 book: 12.49 ", 
 										    "1 music CD: 16.49", 
@@ -34,7 +34,7 @@ public class AcceptanceTest {
 		cart.add(new Item(1, "imported box of chocolates", "any category", 10.00))
 			.add(new Item(1, "imported bottle of perfume", "any category", 47.50));
 		
-		String receipt = new Receipt(cart).print();
+		String receipt = new Transaction(cart).printReceipt();
 		
 		assertThat(receipt, equalTo(asLines("1 imported box of chocolates: 10.50" + 
 											"1 imported bottle of perfume: 54.65" + 
@@ -50,7 +50,7 @@ public class AcceptanceTest {
 			.add(new Item(1, "packet of headache pills", "any category", 9.75))
 			.add(new Item(1, "imported box of chocolates", "any category", 11.25));
 		
-		String receipt = new Receipt(cart).print();
+		String receipt = new Transaction(cart).printReceipt();
 		
 		assertThat(receipt, equalTo(asLines("1 imported bottle of perfume: 32.19" +
 											"1 bottle of perfume: 20.89" +
