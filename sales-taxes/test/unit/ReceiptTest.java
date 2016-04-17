@@ -12,7 +12,6 @@ import core.CategoryTax;
 import core.Item;
 import core.NoTaxes;
 import core.Receipt;
-import core.Transaction;
 
 public class ReceiptTest {
 
@@ -113,7 +112,7 @@ public class ReceiptTest {
 		Cart cart = new Cart();
 		cart.add(new Item(1, "music CD", "music", 14.99));
 		
-		String receipt = new Transaction(cart).printReceipt();
+		String receipt = new Receipt(cart).applyingTax(new CategoryTax(0.10)).print();
 
 		assertThat(receipt, equalTo(asLines("1 music CD: 16.49", 
 										    "Sales Taxes: 1.5",
