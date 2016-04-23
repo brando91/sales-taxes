@@ -32,32 +32,32 @@ public class AcceptanceTest {
 	@Ignore
 	public void ReceiptWithImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "imported box of chocolates", "any category", 10.00, false))
-			.add(new Item(1, "imported bottle of perfume", "any category", 47.50, false));
+		cart.add(new Item(1, "imported box of chocolates", "food", 10.00, true))
+			.add(new Item(1, "imported bottle of perfume", "perfumes", 47.50, true));
 		
 		String receipt = new Transaction(cart).printReceipt();
 		
-		assertThat(receipt, equalTo(asLines("1 imported box of chocolates: 10.50" + 
-											"1 imported bottle of perfume: 54.65" + 
-											"Sales Taxes: 7.65" +
+		assertThat(receipt, equalTo(asLines("1 imported box of chocolates: 10.5",
+											"1 imported bottle of perfume: 54.65", 
+											"Sales Taxes: 7.65",
 											"Total: 65.15")));
 	}
 	
 	@Ignore
 	public void ReceiptWithBothImportedAndNotImportedItems() throws Exception {
 		Cart cart = new Cart();
-		cart.add(new Item(1, "imported bottle of perfume", "any category", 27.99, false))
-			.add(new Item(1, "bottle of perfume", "any category", 18.99, false))
-			.add(new Item(1, "packet of headache pills", "any category", 9.75, false))
-			.add(new Item(1, "imported box of chocolates", "any category", 11.25, false));
+		cart.add(new Item(1, "imported bottle of perfume", "perfumes", 27.99, true))
+			.add(new Item(1, "bottle of perfume", "perfumes", 18.99, false))
+			.add(new Item(1, "packet of headache pills", "medical products", 9.75, false))
+			.add(new Item(1, "imported box of chocolates", "food", 11.25, true));
 		
 		String receipt = new Transaction(cart).printReceipt();
 		
-		assertThat(receipt, equalTo(asLines("1 imported bottle of perfume: 32.19" +
-											"1 bottle of perfume: 20.89" +
-											"1 packet of headache pills: 9.75" +
-											"1 imported box of chocolates: 11.85" +
-											"Sales Taxes: 6.70" +
+		assertThat(receipt, equalTo(asLines("1 imported bottle of perfume: 32.19",
+											"1 bottle of perfume: 20.89",
+											"1 packet of headache pills: 9.75",
+											"1 imported box of chocolates: 11.85",
+											"Sales Taxes: 6.70",
 											"Total: 74.68")));
 	}
 	

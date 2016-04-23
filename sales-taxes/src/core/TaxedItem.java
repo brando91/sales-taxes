@@ -17,9 +17,9 @@ public class TaxedItem {
 	public double tax() {
 		double total = 0;
 		for(Tax tax : this.taxes){
-			total += round(tax.on(this.item));
+			total += tax.on(this.item);
 		}
-		return total;
+		return round(total);
 	}
 
 	private double round(double value) {
