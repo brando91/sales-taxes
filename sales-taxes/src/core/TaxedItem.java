@@ -2,12 +2,12 @@ package core;
 
 public class TaxedItem {
 
-	private Tax tax;
+	private Tax[] taxes;
 	private Item item;
 
-	public TaxedItem(Item item, Tax tax) {
+	public TaxedItem(Item item, Tax... taxes) {
 		this.item = item;
-		this.tax = tax;
+		this.taxes = taxes;
 	}
 
 	public double price() {
@@ -15,7 +15,11 @@ public class TaxedItem {
 	}
 	
 	public double tax() {
-		return round(tax.on(item));
+		double total = 0;
+		for(Tax tax : this.taxes){
+			total += round(tax.on(this.item));
+		}
+		return total;
 	}
 
 	private double round(double value) {

@@ -1,6 +1,6 @@
 package core;
 
-public class ImportTax {
+public class ImportTax implements Tax{
 
 	private double tax;
 
@@ -8,11 +8,11 @@ public class ImportTax {
 		this.tax = tax;
 	}
 
+	@Override
 	public double on(Item item) {
 		if(item.isImported()){
 			return item.price()*this.tax;
 		}
 		return 0;
 	}
-
 }

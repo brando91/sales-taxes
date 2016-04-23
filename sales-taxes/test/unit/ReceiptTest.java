@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import core.Cart;
 import core.CategoryTax;
+import core.ImportTax;
 import core.Item;
 import core.NoTaxes;
 import core.Receipt;
@@ -117,6 +118,30 @@ public class ReceiptTest {
 		assertThat(receipt, equalTo(asLines("1 music CD: 16.49", 
 										    "Sales Taxes: 1.5",
 											"Total: 16.49")));
+	}
+	
+	@Test
+	public void ShouldApplyTaxesToImportedProducts() throws Exception {
+		Cart cart = new Cart();
+		cart.add(new Item(1, "imported melon", "any", 14.99, true));
+		
+		String receipt = new Receipt(cart)
+								.applyingTax(new ImportTax(0.05))
+								.print();
+		
+		assertThat(receipt, containsString("1 imported melon: 15.74"));
+	}
+	
+	@Test
+	public void ShouldApplyBothImportAndCategoryTaxes() throws Exception {
+		Cart cart = new Cart();
+		cart.add(new Item(1, "imported melon", "taxable category", 10.0, true));
+		
+		String receipt = new Receipt(cart)
+								.applyingTax(new ImportTax(0.05), new CategoryTax(0.10))
+								.print();
+		
+		assertThat(receipt, containsString("1 imported melon: 11.5"));
 	}
 	
 	private String asLines(String... lines) {

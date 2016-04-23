@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Receipt {
 
 	private Cart cart;
-	private Tax tax;
+	private Tax[] taxes;
 
 	public Receipt(Cart cart) {
 		this.cart = cart;
@@ -20,7 +20,7 @@ public class Receipt {
 		double taxes = 0;
 		
 		for(Item item : cart.items()){
-			TaxedItem taxedItem = new TaxedItem(item, this.tax);
+			TaxedItem taxedItem = new TaxedItem(item, this.taxes);
 			entries.add(asEntry(item.quantity() + " " + item.product(), taxedItem.price()));
 			total += taxedItem.price();
 			taxes += taxedItem.tax();
@@ -31,8 +31,8 @@ public class Receipt {
 		return StringUtils.join(entries, newLine());
 	}
 
-	public Receipt applyingTax(Tax tax) {
-		this.tax = tax;
+	public Receipt applyingTax(Tax... tax) {
+		this.taxes = tax;
 		return this;
 	}
 	
