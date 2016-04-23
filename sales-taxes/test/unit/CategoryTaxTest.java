@@ -19,14 +19,6 @@ public class CategoryTaxTest {
 	}
 	
 	@Test
-	public void ShouldReturnRoundedApplyedTax() throws Exception {
-		Item item = new Item(1, "taxed book", "any", 15.0, false);
-		double taxedPrice = new CategoryTax(0.10).on(item);
-		
-		assertThat(taxedPrice, equalTo(1.5));
-	}
-	
-	@Test
 	public void ShouldTaxOnlySpecificCategoryItems() throws Exception {
 		Item taxableItem = new Item(1, "banana", "fruits", 10.0, false);
 		Item notTaxableItem = new Item(1, "tomato", "vegetables", 10.0, false);
