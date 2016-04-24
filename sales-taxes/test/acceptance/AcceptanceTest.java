@@ -29,7 +29,7 @@ public class AcceptanceTest {
 											"Total: 29.83")));
 	}
 
-	@Ignore
+	@Test
 	public void ReceiptWithImportedItems() throws Exception {
 		Cart cart = new Cart();
 		cart.add(new Item(1, "imported box of chocolates", "food", 10.00, true))
