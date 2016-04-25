@@ -1,6 +1,5 @@
 package core;
 
-import java.text.DecimalFormat;
 
 public class TaxedItem {
 
@@ -43,7 +42,7 @@ public class TaxedItem {
 	}
 
 	private double lastDecimal(Price number) {
-		String formatted = new DecimalFormat("0.00").format(number.rounded());
+		String formatted = number.formatted();
 		return Double.parseDouble(formatted.charAt(formatted.length()-1) + "");
 	}
 }
