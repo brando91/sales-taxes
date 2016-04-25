@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import core.Cart;
@@ -25,7 +24,7 @@ public class AcceptanceTest {
 		assertThat(receipt, equalTo(asLines("1 book: 12.49", 
 										    "1 music CD: 16.49", 
 										    "1 chocolate bar: 0.85",
-										    "Sales Taxes: 1.5",
+										    "Sales Taxes: 1.50",
 											"Total: 29.83")));
 	}
 
@@ -37,13 +36,13 @@ public class AcceptanceTest {
 		
 		String receipt = new Transaction(cart).printReceipt();
 		
-		assertThat(receipt, equalTo(asLines("1 imported box of chocolates: 10.5",
+		assertThat(receipt, equalTo(asLines("1 imported box of chocolates: 10.50",
 											"1 imported bottle of perfume: 54.65", 
 											"Sales Taxes: 7.65",
 											"Total: 65.15")));
 	}
 	
-	@Ignore
+	@Test
 	public void ReceiptWithBothImportedAndNotImportedItems() throws Exception {
 		Cart cart = new Cart();
 		cart.add(new Item(1, "imported bottle of perfume", "perfumes", 27.99, true))

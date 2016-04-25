@@ -37,7 +37,7 @@ public class Receipt {
 	}
 	
 	private String asEntry(String label, double value) {
-		return label + ": " + value;
+		return label + ": " + new Price(value).formatted();
 	}
 
 	private String newLine() {

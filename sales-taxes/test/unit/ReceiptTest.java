@@ -36,8 +36,8 @@ public class ReceiptTest {
 								.applyingTax(new NoTaxes())
 								.print();
 		
-		assertThat(receipt, equalTo("Sales Taxes: 0.0" + newLine +
-									"Total: 0.0"));
+		assertThat(receipt, equalTo("Sales Taxes: 0.00" + newLine +
+									"Total: 0.00"));
 	}
 	
 	@Test
@@ -116,7 +116,7 @@ public class ReceiptTest {
 		String receipt = new Receipt(cart).applyingTax(new CategoryTax(0.10)).print();
 
 		assertThat(receipt, equalTo(asLines("1 music CD: 16.49", 
-										    "Sales Taxes: 1.5",
+										    "Sales Taxes: 1.50",
 											"Total: 16.49")));
 	}
 	
