@@ -12,11 +12,11 @@ public class TaxedItem {
 		this.taxes = taxes;
 	}
 
-	public double price() {
-		return round(item.price() + tax());
+	public Price price() {
+		return new Price(item.price() + tax().rounded());
 	}
 	
-	public double tax() {
+	public Price tax() {
 		double total = 0;
 		for(Tax tax : this.taxes){
 			total += tax.on(this.item);
@@ -24,30 +24,26 @@ public class TaxedItem {
 		return roundUpToClosestFive(total);
 	}
 
-	private double round(double value) {
-		return Math.round(value*100)/100.0;
-	}
-
-	private double roundUpToClosestFive(double original) {
-		original = round(original);
-		double lastDecimal = lastDecimal(original);
+	private Price roundUpToClosestFive(double original) {
+		Price price = new Price(original);
+		double lastDecimal = lastDecimal(price);
 		if(lastDecimal == 0){
-			return original;
+			return price;
 		}
 		else if(lastDecimal <= 5){
-			return sumUpTo(0.05, original);
+			return sumUpTo(0.05, price);
 		}
 		else{
-			return sumUpTo(0.1, original);
+			return sumUpTo(0.1, price);
 		}
 	}
 
-	private double sumUpTo(double bound, double original) {
-		return round(original + (bound - lastDecimal(original)/100.0));
+	private Price sumUpTo(double bound, Price original) {
+		return new Price(original.rounded() + (bound - lastDecimal(original)/100.0));
 	}
 
-	private double lastDecimal(double number) {
-		String formatted = new DecimalFormat("0.00").format(number);
+	private double lastDecimal(Price number) {
+		String formatted = new DecimalFormat("0.00").format(number.rounded());
 		return Double.parseDouble(formatted.charAt(formatted.length()-1) + "");
 	}
 }

@@ -21,9 +21,9 @@ public class Receipt {
 		
 		for(Item item : cart.items()){
 			TaxedItem taxedItem = new TaxedItem(item, this.taxes);
-			entries.add(asEntry(item.quantity() + " " + item.product(), taxedItem.price()));
-			total += taxedItem.price();
-			taxes += taxedItem.tax();
+			entries.add(asEntry(item.quantity() + " " + item.product(), taxedItem.price().rounded()));
+			total += taxedItem.price().rounded();
+			taxes += taxedItem.tax().rounded();
 		}
 		entries.add(asEntry("Sales Taxes", taxes));
 		entries.add(asEntry("Total", total));

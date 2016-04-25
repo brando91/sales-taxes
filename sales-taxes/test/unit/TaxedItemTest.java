@@ -17,7 +17,7 @@ public class TaxedItemTest {
 		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99, false), 
 											new CategoryTax(0.10));
 		
-		assertThat(taxedItem.price(), equalTo(16.49));
+		assertThat(taxedItem.price().rounded(), equalTo(16.49));
 	}
 	
 	@Test
@@ -25,7 +25,7 @@ public class TaxedItemTest {
 		TaxedItem taxedItem = new TaxedItem(new Item(1, "apple", "any", 14.99, false), 
 											new CategoryTax(0.10));
 		
-		assertThat(taxedItem.tax(), equalTo(1.5));
+		assertThat(taxedItem.tax().rounded(), equalTo(1.5));
 	}
 	
 	@Test
@@ -34,9 +34,9 @@ public class TaxedItemTest {
 		TaxedItem item2 = new TaxedItem(new Item(1, "apple", "any", 12.5, false), new CategoryTax(0.10));
 		TaxedItem item3 = new TaxedItem(new Item(1, "apple", "any", 12.7, false), new CategoryTax(0.10));
 		
-		assertThat(item.tax(), equalTo(1.25));
-		assertThat(item2.tax(), equalTo(1.25));
-		assertThat(item3.tax(), equalTo(1.3));
+		assertThat(item.tax().rounded(), equalTo(1.25));
+		assertThat(item2.tax().rounded(), equalTo(1.25));
+		assertThat(item3.tax().rounded(), equalTo(1.3));
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class TaxedItemTest {
 											new CategoryTax(0.10),
 											new ImportTax(0.05));
 		
-		assertThat(taxedItem.tax(), equalTo(2.25));
+		assertThat(taxedItem.tax().rounded(), equalTo(2.25));
 	}
 	
 	@Test
@@ -54,6 +54,6 @@ public class TaxedItemTest {
 											new CategoryTax(0.10),
 											new ImportTax(0.05));
 		
-		assertThat(taxedItem.tax(), equalTo(7.15));
+		assertThat(taxedItem.tax().rounded(), equalTo(7.15));
 	}
 }
