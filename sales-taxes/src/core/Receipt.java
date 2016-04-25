@@ -12,6 +12,7 @@ public class Receipt {
 
 	public Receipt(Cart cart) {
 		this.cart = cart;
+		this.taxes = new Tax[0];
 	}
 
 	public String print() {

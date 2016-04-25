@@ -11,7 +11,6 @@ import core.Cart;
 import core.CategoryTax;
 import core.ImportTax;
 import core.Item;
-import core.NoTaxes;
 import core.Receipt;
 
 public class ReceiptTest {
@@ -23,18 +22,14 @@ public class ReceiptTest {
 		Cart cart = new Cart();
 		cart.add(new Item(1, "banana", "any category", 3.87, false));
 		
-		String receipt = new Receipt(cart)
-								.applyingTax(new NoTaxes())
-								.print();
+		String receipt = new Receipt(cart).print();
 		
 		assertThat(receipt, containsString("1 banana: 3.87"));
 	}
 	
 	@Test
 	public void ShouldPrintAnEmptyCart() throws Exception {
-		String receipt = new Receipt(new Cart())
-								.applyingTax(new NoTaxes())
-								.print();
+		String receipt = new Receipt(new Cart()).print();
 		
 		assertThat(receipt, equalTo("Sales Taxes: 0.00" + newLine +
 									"Total: 0.00"));
@@ -46,9 +41,7 @@ public class ReceiptTest {
 		cart.add(new Item(1, "banana", "any category", 3.87, false));
 		cart.add(new Item(1, "apple", "any category", 1.05, false));
 		
-		String receipt = new Receipt(cart)
-								.applyingTax(new NoTaxes())
-								.print();
+		String receipt = new Receipt(cart).print();
 		
 		assertThat(receipt, containsString("1 banana: 3.87"));
 		assertThat(receipt, containsString("1 apple: 1.05"));
@@ -60,9 +53,7 @@ public class ReceiptTest {
 		cart.add(new Item(1, "banana", "any category", 2.0, false));
 		cart.add(new Item(1, "apple", "any category", 1.55, false));
 		
-		String receipt = new Receipt(cart)
-									.applyingTax(new NoTaxes())
-									.print();
+		String receipt = new Receipt(cart).print();
 		
 		assertThat(receipt, containsString("Total: 3.55"));
 	}
